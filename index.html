@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Restaurant Checklist</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #222;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+button {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 4px;
+}
+
+.save {
+    background: #16a34a;
+    color: white;
+}
+
+.print {
+    background: #2563eb;
+    color: white;
+}
+
+.clear {
+    background: #dc2626;
+    color: white;
+}
+
+.secondary {
+    background: #6b7280;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background: #e5e7eb;
+}
+
+.status {
+    width: 120px;
+}
+
+.record {
+    border: 1px solid #ddd;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.small {
+    font-size: 13px;
+    color: #666;
+}
+
+@media(max-width:700px) {
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    .record {
+        display: block;
+    }
+}
+
+/* A4 PRINT */
+@media print {
+
+    body {
+        background: white;
+    }
+
+    header {
+        background: white;
+        color: black;
+        border-bottom: 2px solid black;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 5px;
+        margin: 0 0 10px 0;
+    }
+
+    input, textarea, select {
+        border: none;
+        padding: 2px;
+        margin: 0;
+    }
+
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>DAILY RESTAURANT CHECKLIST</h1>
+    <div>Daily Food Safety & Hygiene Record</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <label>Restaurant / Hotel Name</label>
+        <input id="restaurantName" type="text"
+               placeholder="Enter restaurant name">
+
+        <label>Date</label>
+        <input id="checkDate" type="date">
+
+        <label>Completed By</label>
+        <input id="completedBy" type="text"
+               placeholder="Name of staff">
+
+        <label>Shift</label>
+        <select id="shift">
+            <option value="">Select shift</option>
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+            <option>Night</option>
+        </select>
+    </div>
+
+    <div class="card">
+
+        <h2>Daily Checklist</h2>
+
+        <table id="checklistTable">
+
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Checklist Item</th>
+                    <th class="status">Status</th>
+                    <th>Comments / Corrective Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td>Food preparation areas clean and hygienic</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Floors clean and free from hazards</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Food storage areas clean and organised</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Refrigerators / freezers clean and operating correctly</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td>Food temperatures checked and recorded</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td>Raw and cooked food stored separately</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td>Staff personal hygiene satisfactory</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td>Hand washing facilities clean and supplied</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td>Cleaning chemicals stored safely</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td>Waste bins clean and emptied</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td>Pest control condition satisfactory</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td>Equipment clean and in good condition</td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                            <option>N/A</option>
+                        </select>
+                    </td>
+                    <td><input type="text"></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+
+        <label>General Remarks</label>
+        <textarea id="remarks" rows="4"
+                  placeholder="Enter remarks or corrective actions"></textarea>
+
+        <label>Supervisor Name</label>
+        <input id="supervisor" type="text">
+
+        <div class="no-print">
+
+            <button class="save" onclick="saveRecord()">
+                💾 Save Daily Checklist
+            </button>
+
+            <button class="print" onclick="window.print()">
+                🖨️ Print / Save A4 PDF
+            </button>
+
+            <button class="clear" onclick="clearForm()">
+                Clear
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="card no-print">
+
+        <h2>Previous Daily Records</h2>
+
+        <div id="records"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const dateInput = document.getElementById("checkDate");
+
+const today = new Date();
+dateInput.value = today.toISOString().split("T")[0];
+
+function getChecklistData() {
+
+    const rows = document.querySelectorAll("#checklistTable tbody tr");
+
+    const data = [];
+
+    rows.forEach(row => {
+
+        const item = row.cells[1].innerText;
+        const status = row.querySelector("select").value;
+        const comment = row.querySelector("input").value;
+
+        data.push({
+            item: item,
+            status: status,
+            comment: comment
+        });
+
+    });
+
+    return data;
+}
+
+function saveRecord() {
+
+    const date = document.getElementById("checkDate").value;
+
+    if (!date) {
+        alert("Please select a date.");
+        return;
+    }
+
+    const record = {
+
+        restaurantName:
+            document.getElementById("restaurantName").value,
+
+        date: date,
+
+        completedBy:
+            document.getElementById("completedBy").value,
+
+        shift:
+            document.getElementById("shift").value,
+
+        checklist:
+            getChecklistData(),
+
+        remarks:
+            document.getElementById("remarks").value,
+
+        supervisor:
+            document.getElementById("supervisor").value
+
+    };
+
+    let records =
+        JSON.parse(localStorage.getItem("restaurantChecklistRecords") || "[]");
+
+    const existingIndex =
+        records.findIndex(r => r.date === date);
+
+    if (existingIndex >= 0) {
+
+        if (!confirm(
+            "A checklist already exists for this date. Replace it?"
+        )) {
+            return;
+        }
+
+        records[existingIndex] = record;
+
+    } else {
+
+        records.push(record);
+
+    }
+
+    localStorage.setItem(
+        "restaurantChecklistRecords",
+        JSON.stringify(records)
+    );
+
+    loadRecords();
+
+    alert("Daily checklist saved successfully.");
+}
+
+function loadRecords() {
+
+    const records =
+        JSON.parse(localStorage.getItem("restaurantChecklistRecords") || "[]");
+
+    const container =
+        document.getElementById("records");
+
+    container.innerHTML = "";
+
+    if (records.length === 0) {
+
+        container.innerHTML =
+            "<p class='small'>No saved records yet.</p>";
+
+        return;
+    }
+
+    records.sort((a,b) =>
+        new Date(b.date) - new Date(a.date)
+    );
+
+    records.forEach(record => {
+
+        const div = document.createElement("div");
+
+        div.className = "record";
+
+        div.innerHTML = `
+
+            <div>
+                <strong>${record.date}</strong><br>
+                <span class="small">
+                    ${record.completedBy || "No staff name"}
+                    ${record.shift ? " • " + record.shift : ""}
+                </span>
+            </div>
+
+            <div>
+
+                <button class="secondary"
+                    onclick="loadRecord('${record.date}')">
+                    Open
+                </button>
+
+                <button class="clear"
+                    onclick="deleteRecord('${record.date}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        container.appendChild(div);
+
+    });
+
+}
+
+function loadRecord(date) {
+
+    const records =
+        JSON.parse(localStorage.getItem("restaurantChecklistRecords") || "[]");
+
+    const record =
+        records.find(r => r.date === date);
+
+    if (!record) return;
+
+    document.getElementById("restaurantName").value =
+        record.restaurantName || "";
+
+    document.getElementById("checkDate").value =
+        record.date;
+
+    document.getElementById("completedBy").value =
+        record.completedBy || "";
+
+    document.getElementById("shift").value =
+        record.shift || "";
+
+    document.getElementById("remarks").value =
+        record.remarks || "";
+
+    document.getElementById("supervisor").value =
+        record.supervisor || "";
+
+    const rows =
+        document.querySelectorAll("#checklistTable tbody tr");
+
+    rows.forEach((row, index) => {
+
+        if (!record.checklist[index]) return;
+
+        row.querySelector("select").value =
+            record.checklist[index].status || "";
+
+        row.querySelector("input").value =
+            record.checklist[index].comment || "";
+
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+function deleteRecord(date) {
+
+    if (!confirm("Delete this daily record?")) {
+        return;
+    }
+
+    let records =
+        JSON.parse(localStorage.getItem("restaurantChecklistRecords") || "[]");
+
+    records =
+        records.filter(r => r.date !== date);
+
+    localStorage.setItem(
+        "restaurantChecklistRecords",
+        JSON.stringify(records)
+    );
+
+    loadRecords();
+}
+
+function clearForm() {
+
+    if (!confirm("Clear the current form?")) {
+        return;
+    }
+
+    document.getElementById("restaurantName").value = "";
+
+    document.getElementById("completedBy").value = "";
+
+    document.getElementById("shift").value = "";
+
+    document.getElementById("remarks").value = "";
+
+    document.getElementById("supervisor").value = "";
+
+    const rows =
+        document.querySelectorAll("#checklistTable tbody tr");
+
+    rows.forEach(row => {
+
+        row.querySelector("select").value = "";
+
+        row.querySelector("input").value = "";
+
+    });
+
+    dateInput.value =
+        new Date().toISOString().split("T")[0];
+}
+
+loadRecords();
+
+</script>
+
+</body>
+</html>
