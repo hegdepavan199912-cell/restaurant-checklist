@@ -3,22 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KHANS RESTAURANT DAILY KITCHEN CHECKLIST</title>
 
-<title>Khans Restaurant Daily Kitchen Checklist</title>
-
-<!-- PDF LIBRARIES -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
-    background:#e7e7e7;
+    background:#e8e8e8;
     font-family:Arial,Helvetica,sans-serif;
     color:#111;
 }
@@ -27,17 +22,17 @@ body{
     background:#111827;
     color:#fff;
     text-align:center;
-    padding:18px 10px;
+    padding:16px;
 }
 
 .app-header h1{
     margin:0;
-    font-size:23px;
+    font-size:22px;
 }
 
 .app-header p{
     margin:5px 0 0;
-    font-size:14px;
+    font-size:13px;
 }
 
 .container{
@@ -47,7 +42,7 @@ body{
 }
 
 /* =========================
-   A4 PAGE
+   A4
 ========================= */
 
 .page{
@@ -56,26 +51,25 @@ body{
     background:#fff;
     margin:0 auto 20px;
     padding:7mm;
-    box-shadow:0 2px 12px rgba(0,0,0,.18);
     overflow:hidden;
-    position:relative;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
 }
 
 .page-title{
     text-align:center;
-    font-size:17px;
+    font-size:16px;
     font-weight:bold;
-    margin-bottom:5px;
+    margin-bottom:3px;
 }
 
 .page-subtitle{
     text-align:center;
-    font-size:10px;
-    margin-bottom:6px;
+    font-size:9px;
+    margin-bottom:5px;
 }
 
 /* =========================
-   INFO
+   TOP INFO
 ========================= */
 
 .top-info{
@@ -87,21 +81,20 @@ body{
 .top-info td{
     border:1px solid #333;
     padding:3px 5px;
-    height:24px;
+    height:23px;
+    font-size:9px;
 }
 
 .top-info .label{
     width:25%;
     font-weight:bold;
-    font-size:10px;
 }
 
-.top-info input,
-.top-info select{
+.top-info input{
     width:100%;
     border:none;
     outline:none;
-    font-size:10px;
+    font-size:9px;
     background:transparent;
 }
 
@@ -111,15 +104,15 @@ body{
 
 .section-title{
     border:1px solid #333;
-    background:#ededed;
-    font-weight:bold;
+    background:#eeeeee;
     padding:3px 5px;
-    font-size:10.5px;
     margin-top:4px;
+    font-size:9.5px;
+    font-weight:bold;
 }
 
 /* =========================
-   TABLES
+   TABLE
 ========================= */
 
 table{
@@ -127,19 +120,18 @@ table{
     border-collapse:collapse;
 }
 
-th,
-td{
+th,td{
     border:1px solid #333;
     padding:2px 3px;
-    font-size:8.7px;
+    font-size:8px;
     line-height:1.05;
     vertical-align:middle;
 }
 
 th{
     background:#f1f1f1;
-    font-weight:bold;
     text-align:center;
+    font-weight:bold;
 }
 
 .check-table td:first-child{
@@ -151,62 +143,40 @@ th{
     text-align:center;
 }
 
-/* REAL CHECKBOX */
+/* =========================
+   CHECKBOX
+========================= */
 
 .tick-box{
     appearance:none;
     -webkit-appearance:none;
-
     width:14px;
     height:14px;
-
     border:1.5px solid #111;
-    border-radius:2px;
-
-    background:white;
-
-    display:inline-block;
+    background:#fff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
     vertical-align:middle;
-
-    position:relative;
+    margin:0;
+    padding:0;
 }
 
 .tick-box:checked::after{
     content:"✓";
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-55%);
-
-    font-size:14px;
+    font-size:13px;
+    line-height:13px;
     font-weight:bold;
-
     color:#000;
 }
 
-/* =========================
-   YES / NO CLEAR LABEL
-========================= */
-
-.yesno-header{
-    text-align:center;
+.yesno-label{
+    font-size:7px;
     font-weight:bold;
-}
-
-.yesno-word{
-    font-size:8px;
-    font-weight:bold;
-    margin-bottom:1px;
-}
-
-.yesno-box{
-    display:flex;
-    justify-content:center;
+    display:inline-flex;
     align-items:center;
-    gap:3px;
+    gap:2px;
+    margin:0 2px;
 }
 
 /* =========================
@@ -214,57 +184,48 @@ th{
 ========================= */
 
 .small-input,
-.temp-input{
-    width:100%;
-    border:none;
-    outline:none;
-    background:transparent;
-    font-size:8.5px;
-    padding:1px;
-}
-
-textarea{
-    width:100%;
-    border:none;
-    outline:none;
-    resize:none;
-    font-family:Arial;
-    font-size:8.5px;
-}
-
-.problem-area{
-    height:34px;
-}
-
-.signature{
-    height:34px;
-    width:100%;
-    border:none;
-}
-
-/* =========================
-   TEMPERATURE
-========================= */
-
+.temp-input,
 .degree-input{
     width:100%;
     border:none;
     outline:none;
     background:transparent;
-    font-size:8.5px;
+    font-family:Arial;
+    font-size:8px;
+    padding:1px;
+}
+
+.degree-input{
     text-align:center;
+}
+
+textarea{
+    width:100%;
+    height:32px;
+    border:none;
+    outline:none;
+    resize:none;
+    font-family:Arial;
+    font-size:8px;
+}
+
+.signature{
+    width:100%;
+    height:32px;
+    border:none;
+    outline:none;
 }
 
 /* =========================
    BUTTONS
 ========================= */
 
-.buttons{
-    background:white;
+.controls{
+    background:#fff;
     padding:15px;
     text-align:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
     margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
 button{
@@ -278,32 +239,32 @@ button{
 
 .save{
     background:#15803d;
-    color:white;
+    color:#fff;
 }
 
 .pdf{
     background:#2563eb;
-    color:white;
+    color:#fff;
 }
 
 .month{
     background:#7c3aed;
-    color:white;
+    color:#fff;
 }
 
 .clear{
     background:#dc2626;
-    color:white;
+    color:#fff;
 }
 
 .open{
     background:#4b5563;
-    color:white;
+    color:#fff;
 }
 
 .delete{
     background:#dc2626;
-    color:white;
+    color:#fff;
 }
 
 /* =========================
@@ -311,7 +272,7 @@ button{
 ========================= */
 
 .records{
-    background:white;
+    background:#fff;
     padding:15px;
     margin-bottom:30px;
 }
@@ -319,41 +280,33 @@ button{
 .record{
     border:1px solid #bbb;
     padding:10px;
-    margin:6px 0;
+    margin:7px 0;
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
 
+.record-info{
+    font-size:14px;
+}
+
 /* =========================
-   PDF VIEW
+   PDF STATUS
 ========================= */
 
-#pdfViewer{
+#pdfStatus{
     display:none;
     position:fixed;
-    inset:0;
-    background:#222;
-    z-index:99999;
-}
-
-#pdfViewer iframe{
-    width:100%;
-    height:100%;
-    border:none;
-}
-
-.close-pdf{
-    position:absolute;
-    right:12px;
-    top:10px;
-    z-index:100000;
-
-    background:#dc2626;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background:#111827;
     color:white;
-
-    padding:9px 14px;
-    border-radius:6px;
+    padding:20px 25px;
+    border-radius:10px;
+    z-index:99999;
+    text-align:center;
+    font-weight:bold;
 }
 
 /* =========================
@@ -362,64 +315,33 @@ button{
 
 @media(max-width:800px){
 
+    .container{
+        padding:4px;
+    }
+
     .page{
         width:100%;
         height:auto;
-        min-height:auto;
+        min-height:0;
         padding:8px;
         box-shadow:none;
     }
 
-    th,
-    td{
-        font-size:8px;
+    th,td{
+        font-size:7.5px;
     }
 
     .record{
         display:block;
     }
+
+    .record button{
+        margin-top:8px;
+    }
 }
 
 /* =========================
-   PDF CLONE
-========================= */
-
-.pdf-render{
-    width:794px;
-    height:1123px;
-
-    background:white;
-
-    padding:26px;
-
-    overflow:hidden;
-
-    font-family:Arial,Helvetica,sans-serif;
-
-    position:relative;
-}
-
-.pdf-render .page{
-    width:794px !important;
-    height:1123px !important;
-
-    padding:26px !important;
-
-    margin:0 !important;
-
-    box-shadow:none !important;
-
-    overflow:hidden !important;
-}
-
-.pdf-render input,
-.pdf-render select,
-.pdf-render textarea{
-    background:transparent !important;
-}
-
-/* =========================
-   PRINT BACKUP
+   PRINT FALLBACK ONLY
 ========================= */
 
 @media print{
@@ -429,8 +351,8 @@ button{
     }
 
     .app-header,
-    .no-print,
-    #pdfViewer{
+    .controls,
+    .records{
         display:none!important;
     }
 
@@ -443,7 +365,7 @@ button{
         page-break-after:always;
     }
 
-    .page:last-child{
+    .page:last-of-type{
         page-break-after:auto;
     }
 
@@ -452,26 +374,20 @@ button{
         margin:0;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<header class="app-header no-print">
-
-<h1>KHANS RESTAURANT</h1>
-
-<p>DAILY KITCHEN CHECKLIST</p>
-
+<header class="app-header">
+    <h1>KHANS RESTAURANT</h1>
+    <p>DAILY KITCHEN CHECKLIST</p>
 </header>
-
 
 <div class="container">
 
-
 <!-- =====================================================
-     PAGE 1
+PAGE 1
 ===================================================== -->
 
 <div class="page" id="page1">
@@ -484,58 +400,34 @@ KHANS RESTAURANT DAILY KITCHEN CHECKLIST
 FOOD SAFETY & HYGIENE RECORD
 </div>
 
-
 <table class="top-info">
 
 <tr>
-
-<td class="label">
-Date
-</td>
-
+<td class="label">Date</td>
 <td>
 <input type="date" id="date">
 </td>
-
 </tr>
 
-
 <tr>
-
-<td class="label">
-Chef of Duty
-</td>
-
+<td class="label">Chef of Duty</td>
 <td>
 <input type="text" id="chef">
 </td>
-
 </tr>
 
-
 <tr>
-
-<td class="label">
-AM Shift / Time
-</td>
-
+<td class="label">AM Shift / Time</td>
 <td>
 <input type="time" id="amTime">
 </td>
-
 </tr>
 
-
 <tr>
-
-<td class="label">
-PM Shift / Time
-</td>
-
+<td class="label">PM Shift / Time</td>
 <td>
 <input type="time" id="pmTime">
 </td>
-
 </tr>
 
 </table>
@@ -547,89 +439,15 @@ PM Shift / Time
 KITCHEN OPENING CHECKS
 </div>
 
-
 <table class="check-table">
 
 <tr>
-
-<th>Check</th>
-
-<th class="yesno-header">
-YES
-</th>
-
-<th class="yesno-header">
-NO
-</th>
-
+<th>CHECK</th>
+<th>YES</th>
+<th>NO</th>
 </tr>
 
-
-<script>
-
-const openingChecks = [
-
-"No sign of Evidence of Pest Activity",
-
-"Hand Wash Basin has Hot/ Cold running water, soap & towel",
-
-"Fridge, freezer, dishwasher working",
-
-"Waste cleared from yesterday",
-
-"Food contact surfaces cleaned from yesterday",
-
-"No dirty washing up left from yesterday",
-
-"Sanitizers available within spray bottles",
-
-"No out of date food products in the kitchen",
-
-"Raw food stored separate from cooked food",
-
-"Staff are fit to work",
-
-"Adequate supply of hand washing materials",
-
-"Adequate supply of washing/cleaning materials"
-
-];
-
-document.write(
-
-openingChecks.map((text,i)=>`
-
-<tr>
-
-<td>${text}</td>
-
-<td class="check-cell">
-
-<input
-type="checkbox"
-class="tick-box yesno"
-data-group="open${i+1}"
->
-
-</td>
-
-<td class="check-cell">
-
-<input
-type="checkbox"
-class="tick-box yesno"
-data-group="open${i+1}"
->
-
-</td>
-
-</tr>
-
-`).join("")
-
-);
-
-</script>
+<tbody id="openingRows"></tbody>
 
 </table>
 
@@ -640,70 +458,18 @@ data-group="open${i+1}"
 DELIVERY TEMPERATURE
 </div>
 
-
 <table>
 
 <tr>
-
 <th>Acceptable Range</th>
 <th>Supplier</th>
 <th>Food Checked</th>
-<th>Temperature °C</th>
+<th>Temperature</th>
 <th>Action Taken</th>
 <th>Initials</th>
-
 </tr>
 
-
-<script>
-
-for(let i=0;i<5;i++){
-
-document.write(`
-
-<tr>
-
-<td>${i<3 ? "&lt;8°C" : "&lt;15°C"}</td>
-
-<td>
-<input class="temp-input">
-</td>
-
-<td>
-
-<div class="yesno-box">
-
-<input type="checkbox"
-class="tick-box delivery-check">
-
-</div>
-
-</td>
-
-<td>
-
-<input
-class="degree-input temperature"
-placeholder="4°"
->
-
-</td>
-
-<td>
-<input class="temp-input">
-</td>
-
-<td>
-<input class="temp-input">
-</td>
-
-</tr>
-
-`);
-
-}
-
-</script>
+<tbody id="deliveryRows"></tbody>
 
 </table>
 
@@ -714,21 +480,16 @@ placeholder="4°"
 FRIDGE AND FREEZER TEMPERATURES
 </div>
 
-
 <table>
 
 <tr>
-
-<th>Unit</th>
+<th>UNIT</th>
 <th>AM</th>
 <th>PM</th>
-
-<th>Unit</th>
+<th>UNIT</th>
 <th>AM</th>
 <th>PM</th>
-
 </tr>
-
 
 <tr>
 <td>Counter Fridge 1</td>
@@ -740,7 +501,6 @@ FRIDGE AND FREEZER TEMPERATURES
 <td><input class="degree-input temperature" placeholder="4°"></td>
 </tr>
 
-
 <tr>
 <td>Counter Fridge 2</td>
 <td><input class="degree-input temperature" placeholder="4°"></td>
@@ -750,7 +510,6 @@ FRIDGE AND FREEZER TEMPERATURES
 <td><input class="degree-input temperature" placeholder="4°"></td>
 <td><input class="degree-input temperature" placeholder="4°"></td>
 </tr>
-
 
 <tr>
 <td>Counter Fridge 3</td>
@@ -762,7 +521,6 @@ FRIDGE AND FREEZER TEMPERATURES
 <td><input class="degree-input temperature" placeholder="4°"></td>
 </tr>
 
-
 <tr>
 <td>Freezer 1</td>
 <td><input class="degree-input temperature" placeholder="-18°"></td>
@@ -773,29 +531,14 @@ FRIDGE AND FREEZER TEMPERATURES
 <td><input class="degree-input temperature" placeholder="-18°"></td>
 </tr>
 
-
 <tr>
+<td>Initials</td>
+<td><input class="small-input"></td>
+<td><input class="small-input"></td>
 
 <td>Initials</td>
-
-<td>
-<input class="small-input">
-</td>
-
-<td>
-<input class="small-input">
-</td>
-
-<td>Initials</td>
-
-<td>
-<input class="small-input">
-</td>
-
-<td>
-<input class="small-input">
-</td>
-
+<td><input class="small-input"></td>
+<td><input class="small-input"></td>
 </tr>
 
 </table>
@@ -807,33 +550,372 @@ FRIDGE AND FREEZER TEMPERATURES
 COOKING / REHEATING TEMPERATURES
 </div>
 
-
 <table>
 
 <tr>
-
 <th>Food</th>
 <th>Acceptable Range</th>
 <th>Time</th>
 <th>Temperature °C</th>
 <th>Initials</th>
+</tr>
+
+<tbody id="cookingRows"></tbody>
+
+</table>
+
+
+<!-- CHILLING -->
+
+<div class="section-title">
+CHILLING TIMES AND TEMPERATURES (Blast Chill Method)
+</div>
+
+<table>
+
+<tr>
+<th>Food</th>
+<th>Start Time</th>
+<th>End Time</th>
+<th>Temperature °C</th>
+<th>Initials</th>
+</tr>
+
+<tbody id="chillingRows"></tbody>
+
+</table>
+
+</div>
+
+
+<!-- =====================================================
+PAGE 2
+===================================================== -->
+
+<div class="page" id="page2">
+
+<div class="page-title">
+KHANS RESTAURANT DAILY KITCHEN CHECKLIST
+</div>
+
+
+<!-- HOT WATER -->
+
+<div class="section-title">
+HOT WATER CHECK
+</div>
+
+<table>
+
+<tr>
+<th>Acceptable Range</th>
+<th>Temp °C<br>After 1 min</th>
+<th>Initials</th>
+<th>Acceptable Range</th>
+<th>Temp °C<br>Rinse Cycle</th>
+<th>Initials</th>
+</tr>
+
+<tr>
+<td>&gt;40°C</td>
+
+<td>
+<input class="degree-input temperature" placeholder="40°">
+</td>
+
+<td>
+<input class="small-input">
+</td>
+
+<td>&gt;82°C</td>
+
+<td>
+<input class="degree-input temperature" placeholder="82°">
+</td>
+
+<td>
+<input class="small-input">
+</td>
 
 </tr>
+
+</table>
+
+
+<!-- PROBLEMS -->
+
+<div class="section-title">
+PROBLEMS IDENTIFIED / ACTION TAKEN
+</div>
+
+<table>
+
+<tr>
+<th>PROBLEMS IDENTIFIED</th>
+<th>ACTION TAKEN</th>
+<th>UPDATES</th>
+<th>MANAGER'S SIGNATURE</th>
+</tr>
+
+<tr>
+<td><textarea></textarea></td>
+<td><textarea></textarea></td>
+<td><textarea></textarea></td>
+<td><input class="signature"></td>
+</tr>
+
+<tr>
+<td><textarea></textarea></td>
+<td><textarea></textarea></td>
+<td><textarea></textarea></td>
+<td><input class="signature"></td>
+</tr>
+
+</table>
+
+
+<!-- CLOSING -->
+
+<div class="section-title">
+KITCHEN CLOSING CHECKS
+</div>
+
+<table class="check-table">
+
+<tr>
+<th>CHECK</th>
+<th>YES</th>
+<th>NO</th>
+</tr>
+
+<tbody id="closingRows"></tbody>
+
+</table>
+
+
+<!-- CLEANING -->
+
+<div class="section-title">
+DAILY CLEANING SCHEDULE
+</div>
+
+<table>
+
+<tr>
+<th>DAY</th>
+<th>AREA</th>
+<th>YES / NO</th>
+<th>CLEANED BY</th>
+<th>CHECKED BY</th>
+</tr>
+
+<tbody id="cleaningRows"></tbody>
+
+</table>
+
+</div>
+
+
+<!-- =====================================================
+BUTTONS
+===================================================== -->
+
+<div class="controls">
+
+<button class="save" onclick="saveChecklist()">
+💾 SAVE DAILY CHECKLIST
+</button>
+
+<button class="pdf" onclick="createDailyPDF()">
+📄 SAVE / VIEW PDF
+</button>
+
+<button class="month" onclick="createMonthlyPDF()">
+📅 MONTHLY PDF
+</button>
+
+<button class="clear" onclick="clearForm()">
+🗑️ CLEAR
+</button>
+
+</div>
+
+
+<!-- =====================================================
+RECORDS
+===================================================== -->
+
+<div class="records">
+
+<h2>Saved Daily Records</h2>
+
+<div id="records"></div>
+
+</div>
+
+</div>
+
+<div id="pdfStatus">
+Creating A4 PDF...<br>
+Please wait...
+</div>
 
 
 <script>
 
+/* =====================================================
+DATA
+===================================================== */
+
+const openingChecks=[
+"No sign of Evidence of Pest Activity",
+"Hand Wash Basin has Hot/ Cold running water, soap & towel",
+"Fridge, freezer, dishwasher working",
+"Waste cleared from yesterday",
+"Food contact surfaces cleaned from yesterday",
+"No dirty washing up left from yesterday",
+"Sanitizers available within spray bottles",
+"No out of date food products in the kitchen",
+"Raw food stored separate from cooked food",
+"Staff are fit to work",
+"Adequate supply of hand washing materials",
+"Adequate supply of washing/cleaning materials"
+];
+
+const closingChecks=[
+"Waste Cleared from food storage/ preparation area",
+"Floors cleaned",
+"Food and hand contact surface cleaned & sanitized",
+"Not an excess of dirty washing up left",
+"Out of date food products disposed off",
+"All food covered and dated, no food left out",
+"Raw food stored separate from cooked food",
+"Equipment switched off",
+"Fire escape route clear",
+"Cleaning schedule followed to an acceptable standard",
+"Dirty uniforms and cloths stored properly"
+];
+
+const cleaning=[
+["Mon","Wall Skirting of the entire kitchen"],
+["Mon","Wheels & legs of all equipment in tandoor section"],
+["Tues","Back walls of fridges in the prep area"],
+["Tues","Wheels & legs of all equipment in prep. Area"],
+["Tues","All bins to be cleaned inside out"],
+["Wed","Racks in the washing area"],
+["Wed","Racks of blast chiller & combi oven"],
+["Wed","All canopy and filters"],
+["Thru","All pipes and sink of big sink downstairs and upstairs"],
+["Thru","Upstairs shelves and masala containers"],
+["Thru","All equipment and their wheels and legs"],
+["Fri","Grill section and tandoor section storage"],
+["Fri","Back pass and its shelves"],
+["Sat","Stairs and side walls of the fire exit"],
+["Sat","All the doors in the kitchen"],
+["Sat","Fryer and griddle"],
+["Sun","Deep freezer and walk in fridge"]
+];
+
+
+/* =====================================================
+BUILD OPENING
+===================================================== */
+
+document.getElementById("openingRows").innerHTML=
+openingChecks.map((x,i)=>`
+
+<tr>
+<td>${x}</td>
+
+<td class="check-cell">
+<input type="checkbox"
+class="tick-box yesno"
+data-group="open${i}">
+</td>
+
+<td class="check-cell">
+<input type="checkbox"
+class="tick-box yesno"
+data-group="open${i}">
+</td>
+
+</tr>
+
+`).join("");
+
+
+/* =====================================================
+BUILD DELIVERY
+===================================================== */
+
+let deliveryHTML="";
+
+for(let i=0;i<5;i++){
+
+deliveryHTML+=`
+
+<tr>
+
+<td>${i<3 ? "&lt;8°C" : "&lt;15°C"}</td>
+
+<td>
+<input class="temp-input">
+</td>
+
+<td>
+
+<label class="yesno-label">
+YES
+<input type="checkbox"
+class="tick-box deliveryYes"
+data-group="delivery${i}">
+</label>
+
+<label class="yesno-label">
+NO
+<input type="checkbox"
+class="tick-box deliveryNo"
+data-group="delivery${i}">
+</label>
+
+</td>
+
+<td>
+<input class="degree-input temperature"
+placeholder="4°">
+</td>
+
+<td>
+<input class="temp-input">
+</td>
+
+<td>
+<input class="temp-input">
+</td>
+
+</tr>
+
+`;
+}
+
+document.getElementById("deliveryRows").innerHTML=deliveryHTML;
+
+
+/* =====================================================
+BUILD COOKING
+===================================================== */
+
+let cookingHTML="";
+
 for(let i=0;i<6;i++){
 
-document.write(`
+cookingHTML+=`
 
 <tr>
 
 <td>
-
 <input class="small-input"
-value="${i>=3 ? "RE-HEATING" : ""}">
-
+${i>=3 ? 'value="RE-HEATING"' : ''}>
 </td>
 
 <td>&gt;75°C</td>
@@ -853,40 +935,21 @@ placeholder="75°">
 
 </tr>
 
-`);
-
+`;
 }
 
-</script>
-
-</table>
+document.getElementById("cookingRows").innerHTML=cookingHTML;
 
 
-<!-- CHILLING -->
+/* =====================================================
+BUILD CHILLING
+===================================================== */
 
-<div class="section-title">
-CHILLING TIMES AND TEMPERATURES (Blast Chill Method)
-</div>
-
-
-<table>
-
-<tr>
-
-<th>Food</th>
-<th>Start Time</th>
-<th>End Time</th>
-<th>Temperature °C</th>
-<th>Initials</th>
-
-</tr>
-
-
-<script>
+let chillingHTML="";
 
 for(let i=0;i<6;i++){
 
-document.write(`
+chillingHTML+=`
 
 <tr>
 
@@ -913,332 +976,68 @@ placeholder="4°">
 
 </tr>
 
-`);
-
+`;
 }
 
-</script>
-
-</table>
-
-</div>
+document.getElementById("chillingRows").innerHTML=chillingHTML;
 
 
-<!-- =====================================================
-     PAGE 2
-===================================================== -->
+/* =====================================================
+BUILD CLOSING
+===================================================== */
 
-<div class="page" id="page2">
-
-
-<div class="page-title">
-KHANS RESTAURANT DAILY KITCHEN CHECKLIST
-</div>
-
-
-<!-- HOT WATER -->
-
-<div class="section-title">
-HOT WATER CHECK
-</div>
-
-
-<table>
+document.getElementById("closingRows").innerHTML=
+closingChecks.map((x,i)=>`
 
 <tr>
 
-<th>Acceptable Range</th>
-
-<th>
-Temp °C<br>
-After 1 min
-</th>
-
-<th>Initials</th>
-
-<th>Acceptable Range</th>
-
-<th>
-Temp °C<br>
-of rinse cycle
-</th>
-
-<th>Initials</th>
-
-</tr>
-
-
-<tr>
-
-<td>&gt;40°C</td>
-
-<td>
-<input class="degree-input temperature"
-placeholder="40°">
-</td>
-
-<td>
-<input class="small-input">
-</td>
-
-<td>&gt;82°C</td>
-
-<td>
-<input class="degree-input temperature"
-placeholder="82°">
-</td>
-
-<td>
-<input class="small-input">
-</td>
-
-</tr>
-
-</table>
-
-
-<!-- PROBLEMS -->
-
-<div class="section-title">
-PROBLEMS / CORRECTIVE ACTION
-</div>
-
-
-<table>
-
-<tr>
-
-<th>PROBLEMS IDENTIFIED</th>
-
-<th>ACTION TAKEN</th>
-
-<th>UPDATES</th>
-
-<th>MANAGER'S SIGNATURE</th>
-
-</tr>
-
-
-<tr>
-
-<td>
-<textarea class="problem-area"></textarea>
-</td>
-
-<td>
-<textarea class="problem-area"></textarea>
-</td>
-
-<td>
-<textarea class="problem-area"></textarea>
-</td>
-
-<td>
-<input class="signature">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-<textarea class="problem-area"></textarea>
-</td>
-
-<td>
-<textarea class="problem-area"></textarea>
-</td>
-
-<td>
-<textarea class="problem-area"></textarea>
-</td>
-
-<td>
-<input class="signature">
-</td>
-
-</tr>
-
-</table>
-
-
-<!-- CLOSING -->
-
-<div class="section-title">
-KITCHEN CLOSING CHECKS
-</div>
-
-
-<table class="check-table">
-
-<tr>
-
-<th>Check</th>
-
-<th class="yesno-header">
-YES
-</th>
-
-<th class="yesno-header">
-NO
-</th>
-
-</tr>
-
-
-<script>
-
-const closingChecks = [
-
-"Waste Cleared from food storage/ preparation area",
-
-"Floors cleaned",
-
-"Food and hand contact surface cleaned & sanitized",
-
-"Not an excess of dirty washing up left",
-
-"Out of date food products disposed off",
-
-"All food covered and dated, no food left out",
-
-"Raw food stored separate from cooked food",
-
-"Equipment switched off",
-
-"Fire escape route clear",
-
-"Cleaning schedule followed to an acceptable standard",
-
-"Dirty uniforms and cloths stored properly"
-
-];
-
-document.write(
-
-closingChecks.map((text,i)=>`
-
-<tr>
-
-<td>${text}</td>
+<td>${x}</td>
 
 <td class="check-cell">
-
-<input
-type="checkbox"
+<input type="checkbox"
 class="tick-box yesno"
-data-group="close${i+1}"
->
-
+data-group="close${i}">
 </td>
 
 <td class="check-cell">
-
-<input
-type="checkbox"
+<input type="checkbox"
 class="tick-box yesno"
-data-group="close${i+1}"
->
-
+data-group="close${i}">
 </td>
 
 </tr>
 
-`).join("")
-
-);
-
-</script>
-
-</table>
+`).join("");
 
 
-<!-- DAILY CLEANING -->
+/* =====================================================
+BUILD CLEANING
+===================================================== */
 
-<div class="section-title">
-DAILY CLEANING SCHEDULE
-</div>
-
-
-<table>
+document.getElementById("cleaningRows").innerHTML=
+cleaning.map((x,i)=>`
 
 <tr>
 
-<th>Day</th>
-<th>Area</th>
-<th>YES / NO</th>
-<th>Cleaned By</th>
-<th>Checked By</th>
+<td><b>${x[0]}</b></td>
 
-</tr>
-
-
-<script>
-
-const cleaning = [
-
-["Mon","Wall Skirting of the entire kitchen"],
-["Mon","Wheels & legs of all equipment in tandoor section"],
-
-["Tues","Back walls of fridges in the prep area"],
-["Tues","Wheels & legs of all equipment in prep. Area"],
-["Tues","All bins to be cleaned inside out"],
-
-["Wed","Racks in the washing area"],
-["Wed","Racks of blast chiller & combi oven"],
-["Wed","All canopy and filters"],
-
-["Thru","All pipes and sink of big sink downstairs and upstairs"],
-["Thru","Upstairs shelves and masala containers"],
-["Thru","All equipment and their wheels and legs"],
-
-["Fri","Grill section and tandoor section storage"],
-["Fri","Back pass and its shelves"],
-
-["Sat","Stairs and side walls of the fire exit"],
-["Sat","All the doors in the kitchen"],
-["Sat","Fryer and griddle"],
-
-["Sun","Deep freezer and walk in fridge"]
-
-];
-
-cleaning.forEach((item,i)=>{
-
-document.write(`
-
-<tr>
-
-<td>
-<b>${item[0]}</b>
-</td>
-
-<td>
-${item[1]}
-</td>
+<td>${x[1]}</td>
 
 <td>
 
-<div class="yesno-box">
-
-<label>
+<label class="yesno-label">
 YES
-<input
-type="checkbox"
-class="tick-box cleaning-yes"
+<input type="checkbox"
+class="tick-box cleanYes"
 data-group="clean${i}">
 </label>
 
-<label>
+<label class="yesno-label">
 NO
-<input
-type="checkbox"
-class="tick-box cleaning-no"
+<input type="checkbox"
+class="tick-box cleanNo"
 data-group="clean${i}">
 </label>
-
-</div>
 
 </td>
 
@@ -1252,204 +1051,79 @@ data-group="clean${i}">
 
 </tr>
 
-`);
-
-});
-
-</script>
-
-</table>
-
-
-</div>
-
-
-<!-- =====================================================
-     BUTTONS
-===================================================== -->
-
-<div class="buttons no-print">
-
-<button class="save"
-onclick="saveChecklist()">
-
-💾 SAVE DAILY CHECKLIST
-
-</button>
-
-
-<button class="pdf"
-onclick="generateCurrentPDF()">
-
-📄 VIEW PDF
-
-</button>
-
-
-<button class="month"
-onclick="generateMonthlyPDF()">
-
-📅 VIEW MONTH PDF
-
-</button>
-
-
-<button class="clear"
-onclick="clearForm()">
-
-🗑️ CLEAR
-
-</button>
-
-</div>
-
-
-<!-- =====================================================
-     RECORDS
-===================================================== -->
-
-<div class="records no-print">
-
-<h2>
-Saved Daily Records
-</h2>
-
-<div id="records"></div>
-
-</div>
-
-</div>
-
-
-<!-- PDF VIEWER -->
-
-<div id="pdfViewer">
-
-<button
-class="close-pdf"
-onclick="closePDF()">
-
-✕ CLOSE PDF
-
-</button>
-
-<iframe id="pdfFrame"></iframe>
-
-</div>
-
-
-<script>
-
-/* =====================================================
-   DATE
-===================================================== */
-
-document.getElementById("date").value =
-new Date().toISOString().split("T")[0];
+`).join("");
 
 
 /* =====================================================
-   YES / NO
+YES / NO LOGIC
 ===================================================== */
 
-function setupYesNo(){
+document.addEventListener("change",function(e){
 
-document.querySelectorAll(".yesno").forEach(box=>{
+if(!e.target.matches("input[type=checkbox]"))
+return;
 
-box.addEventListener("change",function(){
+if(!e.target.checked)
+return;
 
-if(!this.checked)return;
+const group=e.target.dataset.group;
 
-const group=this.dataset.group;
+if(!group)
+return;
 
 document
 .querySelectorAll(
-'.yesno[data-group="'+group+'"]'
+'input[data-group="'+group+'"]'
 )
-.forEach(other=>{
+.forEach(box=>{
 
-if(other!==this)
-other.checked=false;
-
-});
+if(box!==e.target)
+box.checked=false;
 
 });
 
 });
-
-
-document.querySelectorAll(
-".cleaning-yes,.cleaning-no"
-).forEach(box=>{
-
-box.addEventListener("change",function(){
-
-if(!this.checked)return;
-
-const group=this.dataset.group;
-
-document
-.querySelectorAll(
-'[data-group="'+group+'"]'
-)
-.forEach(other=>{
-
-if(other!==this)
-other.checked=false;
-
-});
-
-});
-
-});
-
-}
-
-setupYesNo();
 
 
 /* =====================================================
-   DEGREE FORMAT
+TEMPERATURE DEGREE
 ===================================================== */
 
-document.addEventListener("input",function(e){
+document.addEventListener("blur",function(e){
 
-if(
-e.target.classList.contains("temperature")
-){
+if(!e.target.classList.contains("temperature"))
+return;
 
 let value=e.target.value.trim();
 
-if(
-value &&
-!value.includes("°")
-){
+if(value && !value.includes("°")){
 
 e.target.value=value+"°";
 
 }
 
-}
-
-});
+},true);
 
 
 /* =====================================================
-   COLLECT FORM
+TODAY
+===================================================== */
+
+document.getElementById("date").value=
+new Date().toISOString().split("T")[0];
+
+
+/* =====================================================
+COLLECT
 ===================================================== */
 
 function collectForm(){
 
-const elements=
-document.querySelectorAll(
-"#page1 input,#page1 textarea,#page1 select,#page2 input,#page2 textarea,#page2 select"
+const elements=document.querySelectorAll(
+"#page1 input,#page1 textarea,#page2 input,#page2 textarea"
 );
 
-const data=[];
-
-elements.forEach(el=>{
-
-data.push({
+return Array.from(elements).map(el=>({
 
 type:el.type,
 
@@ -1460,37 +1134,30 @@ el.type==="checkbox"
 ?el.checked
 :false
 
-});
-
-});
-
-return data;
+}));
 
 }
 
 
 /* =====================================================
-   RESTORE
+RESTORE
 ===================================================== */
 
 function restoreForm(data){
 
-const elements=
-document.querySelectorAll(
-"#page1 input,#page1 textarea,#page1 select,#page2 input,#page2 textarea,#page2 select"
+const elements=document.querySelectorAll(
+"#page1 input,#page1 textarea,#page2 input,#page2 textarea"
 );
 
 elements.forEach((el,i)=>{
 
-if(!data[i])return;
+if(!data[i])
+return;
 
-el.value=data[i].value || "";
+el.value=data[i].value||"";
 
-if(el.type==="checkbox"){
-
+if(el.type==="checkbox")
 el.checked=!!data[i].checked;
-
-}
 
 });
 
@@ -1498,7 +1165,7 @@ el.checked=!!data[i].checked;
 
 
 /* =====================================================
-   SAVE
+SAVE
 ===================================================== */
 
 function saveChecklist(){
@@ -1539,20 +1206,15 @@ localStorage.getItem(
 )||"[]"
 );
 
-
 const index=
-records.findIndex(
-r=>r.date===date
-);
-
+records.findIndex(r=>r.date===date);
 
 if(index!==-1){
 
-if(
-!confirm(
+if(!confirm(
 "Checklist for this date already exists. Replace it?"
-)
-)return;
+))
+return;
 
 records[index]=record;
 
@@ -1562,24 +1224,20 @@ records.push(record);
 
 }
 
-
 localStorage.setItem(
 "kitchenChecklistRecords",
 JSON.stringify(records)
 );
 
-
 showRecords();
 
-alert(
-"Daily checklist saved successfully."
-);
+alert("Checklist saved successfully.");
 
 }
 
 
 /* =====================================================
-   RECORDS
+SHOW RECORDS
 ===================================================== */
 
 function showRecords(){
@@ -1591,84 +1249,66 @@ localStorage.getItem(
 )||"[]"
 );
 
-
-const container=
+const box=
 document.getElementById("records");
 
-container.innerHTML="";
-
+box.innerHTML="";
 
 if(!records.length){
 
-container.innerHTML=
-"<p>No saved records yet.</p>";
+box.innerHTML="<p>No saved records yet.</p>";
 
 return;
 
 }
 
-
 records.sort(
-(a,b)=>
-new Date(b.date)-new Date(a.date)
+(a,b)=>new Date(b.date)-new Date(a.date)
 );
 
+records.forEach(r=>{
 
-records.forEach(record=>{
-
-const div=
-document.createElement("div");
+const div=document.createElement("div");
 
 div.className="record";
 
-
 div.innerHTML=`
 
-<div>
+<div class="record-info">
 
-<strong>${record.date}</strong>
-
-<br>
-
-Chef:
-${record.chef||"-"}
+<strong>${r.date}</strong>
 
 <br>
 
-AM:
-${record.amTime||"-"}
+Chef: ${r.chef||"-"}
+
+<br>
+
+AM: ${r.amTime||"-"}
 
 &nbsp;&nbsp;
 
-PM:
-${record.pmTime||"-"}
+PM: ${r.pmTime||"-"}
 
 </div>
 
 <div>
 
-<button
-class="open"
-onclick="openRecord('${record.date}')">
-
+<button class="open"
+onclick="openRecord('${r.date}')">
 OPEN
-
 </button>
 
-<button
-class="delete"
-onclick="deleteRecord('${record.date}')">
-
+<button class="delete"
+onclick="deleteRecord('${r.date}')">
 DELETE
-
 </button>
 
 </div>
 
 `;
 
-
-container.appendChild(div);
+box.appendChild(div);
 
 });
 
@@ -1676,7 +1316,7 @@ container.appendChild(div);
 
 
 /* =====================================================
-   OPEN RECORD
+OPEN
 ===================================================== */
 
 function openRecord(date){
@@ -1688,18 +1328,25 @@ localStorage.getItem(
 )||"[]"
 );
 
-
 const record=
-records.find(
-r=>r.date===date
-);
+records.find(r=>r.date===date);
 
-
-if(!record)return;
-
+if(!record)
+return;
 
 restoreForm(record.data);
 
+document.getElementById("date").value=
+record.date;
+
+document.getElementById("chef").value=
+record.chef||"";
+
+document.getElementById("amTime").value=
+record.amTime||"";
+
+document.getElementById("pmTime").value=
+record.pmTime||"";
 
 window.scrollTo({
 top:0,
@@ -1710,17 +1357,15 @@ behavior:"smooth"
 
 
 /* =====================================================
-   DELETE
+DELETE
 ===================================================== */
 
 function deleteRecord(date){
 
-if(
-!confirm(
+if(!confirm(
 "Delete this saved checklist?"
-)
-)return;
-
+))
+return;
 
 let records=
 JSON.parse(
@@ -1729,18 +1374,13 @@ localStorage.getItem(
 )||"[]"
 );
 
-
 records=
-records.filter(
-r=>r.date!==date
-);
-
+records.filter(r=>r.date!==date);
 
 localStorage.setItem(
 "kitchenChecklistRecords",
 JSON.stringify(records)
 );
-
 
 showRecords();
 
@@ -1748,32 +1388,26 @@ showRecords();
 
 
 /* =====================================================
-   CLEAR
+CLEAR
 ===================================================== */
 
 function clearForm(){
 
-if(
-!confirm(
-"Clear the current checklist?"
-)
-)return;
+if(!confirm(
+"Clear current checklist?"
+))
+return;
 
-
-document
-.querySelectorAll(
-"#page1 input,#page1 textarea,#page1 select,#page2 input,#page2 textarea,#page2 select"
-)
-.forEach(el=>{
+document.querySelectorAll(
+"#page1 input,#page1 textarea,#page2 input,#page2 textarea"
+).forEach(el=>{
 
 if(el.type==="checkbox")
 el.checked=false;
-
 else
 el.value="";
 
 });
-
 
 document.getElementById("date").value=
 new Date().toISOString().split("T")[0];
@@ -1782,14 +1416,33 @@ new Date().toISOString().split("T")[0];
 
 
 /* =====================================================
-   MAKE PDF CLONE
+PDF STATUS
 ===================================================== */
 
-async function renderPage(page){
+function status(show){
+
+document.getElementById(
+"pdfStatus"
+).style.display=
+show?"block":"none";
+
+}
+
+
+/* =====================================================
+CREATE PDF PAGE
+===================================================== */
+
+async function makeCanvas(page){
 
 const clone=page.cloneNode(true);
 
-clone.classList.add("pdf-render");
+clone.style.width="794px";
+clone.style.height="1123px";
+clone.style.padding="26px";
+clone.style.margin="0";
+clone.style.boxShadow="none";
+clone.style.overflow="hidden";
 
 clone.querySelectorAll("input").forEach(input=>{
 
@@ -1803,13 +1456,15 @@ box.style.height="14px";
 box.style.border="1.5px solid #111";
 box.style.alignItems="center";
 box.style.justifyContent="center";
-box.style.fontSize="14px";
+box.style.verticalAlign="middle";
+box.style.fontSize="13px";
 box.style.fontWeight="bold";
-box.style.lineHeight="14px";
+box.style.lineHeight="13px";
+box.style.background="#fff";
 
 if(input.checked){
 
-box.innerHTML="✓";
+box.textContent="✓";
 
 }
 
@@ -1819,12 +1474,15 @@ input.replaceWith(box);
 
 const span=document.createElement("span");
 
-span.textContent=input.value ||
+span.textContent=
+input.value ||
 input.placeholder ||
 "";
 
-span.style.fontSize="8.5px";
-span.style.whiteSpace="nowrap";
+span.style.fontFamily="Arial";
+span.style.fontSize="8px";
+span.style.display="inline-block";
+span.style.minHeight="10px";
 
 input.replaceWith(span);
 
@@ -1833,65 +1491,50 @@ input.replaceWith(span);
 });
 
 
-clone.querySelectorAll("textarea").forEach(textarea=>{
+clone.querySelectorAll("textarea").forEach(t=>{
 
 const span=document.createElement("span");
 
-span.textContent=textarea.value||"";
+span.textContent=t.value||"";
 
-span.style.fontSize="8.5px";
+span.style.fontSize="8px";
 span.style.whiteSpace="pre-wrap";
 
-textarea.replaceWith(span);
+t.replaceWith(span);
 
 });
 
 
-clone.querySelectorAll("select").forEach(select=>{
+const holder=document.createElement("div");
 
-const span=document.createElement("span");
+holder.style.position="fixed";
+holder.style.left="-10000px";
+holder.style.top="0";
+holder.style.width="794px";
+holder.style.height="1123px";
+holder.style.background="#fff";
 
-span.textContent=select.value||"";
+holder.appendChild(clone);
 
-span.style.fontSize="8.5px";
-
-select.replaceWith(span);
-
-});
-
-
-const wrapper=document.createElement("div");
-
-wrapper.style.position="fixed";
-wrapper.style.left="-10000px";
-wrapper.style.top="0";
-wrapper.style.width="794px";
-wrapper.style.height="1123px";
-wrapper.style.background="white";
-wrapper.appendChild(clone);
-
-document.body.appendChild(wrapper);
-
+document.body.appendChild(holder);
 
 const canvas=
 await html2canvas(clone,{
 
-scale:2,
+width:794,
+height:1123,
 
-useCORS:true,
+scale:2,
 
 backgroundColor:"#ffffff",
 
-width:794,
-
-height:1123,
+useCORS:true,
 
 logging:false
 
 });
 
-
-document.body.removeChild(wrapper);
+document.body.removeChild(holder);
 
 return canvas;
 
@@ -1899,15 +1542,18 @@ return canvas;
 
 
 /* =====================================================
-   PDF GENERATION
+DAILY PDF
 ===================================================== */
 
-async function createPDF(){
+async function createDailyPDF(){
+
+try{
+
+status(true);
 
 const {
 jsPDF
 }=window.jspdf;
-
 
 const pdf=
 new jsPDF({
@@ -1923,31 +1569,19 @@ compress:true
 });
 
 
-const pages=[
-document.getElementById("page1"),
+const p1=
+await makeCanvas(
+document.getElementById("page1")
+);
+
+const p2=
+await makeCanvas(
 document.getElementById("page2")
-];
-
-
-for(let i=0;i<pages.length;i++){
-
-const canvas=
-await renderPage(pages[i]);
-
-
-const img=
-canvas.toDataURL(
-"image/jpeg",
-0.98
 );
 
 
-if(i>0)
-pdf.addPage();
-
-
 pdf.addImage(
-img,
+p1.toDataURL("image/jpeg",0.98),
 "JPEG",
 0,
 0,
@@ -1957,35 +1591,36 @@ undefined,
 "FAST"
 );
 
-}
+
+pdf.addPage();
 
 
-return pdf;
+pdf.addImage(
+p2.toDataURL("image/jpeg",0.98),
+"JPEG",
+0,
+0,
+210,
+297,
+undefined,
+"FAST"
+);
 
-}
-
-
-/* =====================================================
-   VIEW CURRENT PDF
-===================================================== */
-
-async function generateCurrentPDF(){
 
 const date=
-document.getElementById("date").value;
-
-if(!date){
-
-alert("Please select a date.");
-
-return;
-
-}
+document.getElementById("date").value ||
+"checklist";
 
 
-const pdf=
-await createPDF();
+const filename=
+"Khans_Restaurant_Kitchen_Checklist_"+date+".pdf";
 
+
+/*
+IMPORTANT:
+Use a REAL PDF blob.
+This does NOT call window.print().
+*/
 
 const blob=
 pdf.output("blob");
@@ -1995,23 +1630,65 @@ const url=
 URL.createObjectURL(blob);
 
 
-document.getElementById(
-"pdfFrame"
-).src=url;
+/*
+Open actual PDF in a new browser tab.
+iPhone can then use the normal Share button.
+*/
+
+const newWindow=
+window.open(url,"_blank");
 
 
-document.getElementById(
-"pdfViewer"
-).style.display="block";
+if(!newWindow){
+
+/*
+If Safari blocks the new tab,
+download the real PDF instead.
+*/
+
+const link=
+document.createElement("a");
+
+link.href=url;
+link.download=filename;
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
+
+}
+
+
+setTimeout(()=>{
+URL.revokeObjectURL(url);
+},60000);
+
+status(false);
+
+}catch(error){
+
+console.error(error);
+
+status(false);
+
+alert(
+"PDF could not be created. Please check your internet connection and try again."
+);
+
+}
 
 }
 
 
 /* =====================================================
-   MONTHLY PDF
+MONTHLY PDF
 ===================================================== */
 
-async function generateMonthlyPDF(){
+async function createMonthlyPDF(){
+
+try{
 
 let records=
 JSON.parse(
@@ -2019,7 +1696,6 @@ localStorage.getItem(
 "kitchenChecklistRecords"
 )||"[]"
 );
-
 
 if(!records.length){
 
@@ -2032,27 +1708,24 @@ return;
 }
 
 
-/* CURRENT MONTH */
-
-const currentDate=
-new Date(
+const selected=
 document.getElementById("date").value ||
-new Date()
-);
+new Date().toISOString().split("T")[0];
 
+const selectedDate=
+new Date(selected);
 
 const year=
-currentDate.getFullYear();
+selectedDate.getFullYear();
 
 const month=
-currentDate.getMonth();
+selectedDate.getMonth();
 
 
 records=
 records.filter(r=>{
 
-const d=
-new Date(r.date);
+const d=new Date(r.date);
 
 return(
 d.getFullYear()===year &&
@@ -2074,9 +1747,11 @@ return;
 
 
 records.sort(
-(a,b)=>
-new Date(a.date)-new Date(b.date)
+(a,b)=>new Date(a.date)-new Date(b.date)
 );
+
+
+status(true);
 
 
 const {
@@ -2098,36 +1773,46 @@ compress:true
 });
 
 
-for(let r=0;r<records.length;r++){
+for(let i=0;i<records.length;i++){
 
-restoreForm(r===0 ? records[r].data : records[r].data);
+const record=records[i];
+
+
+/*
+Restore this day's saved information
+*/
+
+restoreForm(record.data);
 
 document.getElementById("date").value=
-records[r].date;
+record.date;
 
 document.getElementById("chef").value=
-records[r].chef||"";
+record.chef||"";
 
 document.getElementById("amTime").value=
-records[r].amTime||"";
+record.amTime||"";
 
 document.getElementById("pmTime").value=
-records[r].pmTime||"";
+record.pmTime||"";
 
 
 const p1=
-await renderPage(
+await makeCanvas(
 document.getElementById("page1")
 );
 
 const p2=
-await renderPage(
+await makeCanvas(
 document.getElementById("page2")
 );
 
 
-if(r>0)
+if(i>0){
+
 pdf.addPage();
+
+}
 
 
 pdf.addImage(
@@ -2167,37 +1852,55 @@ const url=
 URL.createObjectURL(blob);
 
 
-document.getElementById(
-"pdfFrame"
-).src=url;
+const newWindow=
+window.open(url,"_blank");
 
 
-document.getElementById(
-"pdfViewer"
-).style.display="block";
+if(!newWindow){
+
+const link=
+document.createElement("a");
+
+link.href=url;
+
+link.download=
+"Khans_Restaurant_Monthly_Kitchen_Checklist_"+
+year+"-"+String(month+1).padStart(2,"0")+
+".pdf";
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
+
+}
+
+
+setTimeout(()=>{
+URL.revokeObjectURL(url);
+},120000);
+
+
+status(false);
+
+}catch(error){
+
+console.error(error);
+
+status(false);
+
+alert(
+"Monthly PDF could not be created."
+);
+
+}
 
 }
 
 
 /* =====================================================
-   CLOSE PDF
-===================================================== */
-
-function closePDF(){
-
-document.getElementById(
-"pdfViewer"
-).style.display="none";
-
-document.getElementById(
-"pdfFrame"
-).src="";
-
-}
-
-
-/* =====================================================
-   START
+START
 ===================================================== */
 
 showRecords();
